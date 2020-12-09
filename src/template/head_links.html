@@ -8,26 +8,5 @@
     <title>@@title</title>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/class.css">
-    <link rel="stylesheet" href="css/lib/swiper.min.css">
-       <script>
-    (function() {
-        function setFontSize(k) {
-            document.documentElement.style.fontSize =
-                ((((k / 750) * 100) / 16) * 100) + '%';
-        }
+    <link rel="stylesheet" href="../libs/swiper/swiper.min.css">
 
-        function initRem() {
-            var W = document.documentElement.clientWidth;
-            var H = document.documentElement.clientHeight;
-            if (W < H) {
-                // console.log("竖屏");
-                setFontSize(W);
-            } else {
-                // console.log("横屏");
-                setFontSize(H);
-            }
-        }
-        window.addEventListener('orientationchange' in window ? 'orientationchange' : 'resize', initRem, false);
-        document.addEventListener('DOMContentLoaded', initRem, false);
-    })();
-    </script>

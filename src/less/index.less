@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  &::before {
+    content: "";
+    display: block;
+    height: 1300px;
+  }
+  &::after {
+    content: "";
+    display: block;
+    height: 300px;
+  }
+}
+.wrap {
+  margin: 10px;
+  border: 1px solid #eee;
+  width: 300px;
+  height: 40px;
+  overflow: auto;
+  overflow: overlay;
+  background: #eee;
+  padding: 10px;
+  position: relative;
+
+  .inner {
+    background: palevioletred;
+    position: relative;
+    z-index: 100;
+    &::after {
+      content: "#wrap";
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      color: rgba(0, 0, 0, 0.8);
+      font-size: 40px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      text-align: center;
+      font-weight: 900;
+      z-index: 999;
+      pointer-events: none;
+    }
+  }
+}
+.label {
+  display: inline-block;
+  background: red;
+  color: #fff;
+}
+.label-blue {
+  background-color: blue;
+}
+h1 {
+  background-color: #eee;
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.opation {
+  position: fixed;
+  top: 0px;
+  right: 0;
+  width: 100px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  min-width: 300px;
+  width: 100%;
+  z-index: 999;
+}
+.btnGroup {
+  display: flex;
+  padding: 10px;
+  &.btnGroup {
+    margin-top: 10px;
+  }
+  .btn,
+  button {
+    margin-left: 10px;
+  }
+  button {
+    line-height: 30px;
+  }
+}

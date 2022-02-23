@@ -1,9 +1,76 @@
-@@include('../template/head_links.html',{ "title": "首页" })
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../libs/mvvm.js"></script>
+
 </head>
+
 <body>
-    @@include('../template/header.html')
-    <p class="red">内容????</p>
-    @@include('../template/footer_links.html',{ "title": "" })
-    <script src="../js/index.js"></script>
+    <div class="opation">
+        <div class="btnGroup ">
+            <button onclick="checkInView('#wrap','wrapInView')">点击 检查#wrap是否在可视区</button>
+            <div class="btn">
+
+                <span v-data="wrapInView">--</span>
+            </div>
+        </div>
+        <div class="btnGroup ">
+            <button onclick="checkInView('#label','labelInView')">点击 检查#label是否在可视区</button>
+            <div class="btn">
+
+                <span v-data="labelInView">--</span>
+            </div>
+        </div>
+        <div class="btnGroup ">
+            <button onclick="checkInDomView('#label','wrapInView')">点击 检查#label是否在#wrap可视区内</button>
+            <div class="btn">
+                <span v-data="labelInWrapView">--</span>
+            </div>
+        </div>
+    </div>
+
+    <h1>demo</h1>
+    <div class="wrap" id="wrap">
+        <div class="inner ">
+            这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
+            <span class="label label-blue" id="label">#label</span>有几？ 据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
+        </div>
+    </div>
+
+    <script src="../js/inViewUtils.js">
+    </script>
+    <script src="../libs/mvvm.js"></script>
+    <script>
+        var state = {
+            wrapInView: false, //#wrap是否在可视区
+            labelInView: false, //#label是否在可视区内
+            labelInWrapView: false, //#label是否在#wrap可视区内
+        };
+        var vm = MVVM(state);
+        window.onload = function() {
+            //检查是否在视图
+            checkInView('#wrap', 'wrapInView');
+            checkInView('#label', 'labelInView');
+        }
+
+        //检查是否在浏览器可视区
+        function checkInView(dom, varName) {
+            console.warn("check dom:", document.querySelector(dom))
+            let inView = inViewUtils.isInView({
+                dom: document.querySelector(dom)
+            });
+            console.log("inView:", dom, inView);
+            vm[varName] = inView;
+        }
+        //检查是否在dom的可视区内
+        function checkInDomView(dom, varName) {}
+    </script>
 </body>
+
 </html>

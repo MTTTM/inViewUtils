@@ -47,6 +47,13 @@ body {
       pointer-events: none;
     }
   }
+  .inner2 {
+    word-break: keep-all;
+    white-space: nowrap;
+    &::after {
+      content: "#wrap2";
+    }
+  }
 }
 .label {
   display: inline-block;
@@ -76,15 +83,23 @@ h1 {
 }
 .btnGroup {
   display: flex;
-  padding: 10px;
+  padding: 5px 10px;
   &.btnGroup {
-    margin-top: 10px;
+    margin-top: 2px;
   }
   .btn,
   button {
     margin-left: 10px;
   }
   button {
-    line-height: 30px;
+    line-height: 20px;
   }
+  .btn {
+    color: #fff;
+    background: black;
+  }
+}
+.warning {
+  color: #fff;
+  background: red;
 }

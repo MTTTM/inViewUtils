@@ -145,7 +145,6 @@
         //旋转dom
         var demo1Rotate = function (domID, radiousname, varName) {
             var doms = document.querySelectorAll(`input[type=radio][name=${radiousname}]`);
-
             Array.from(doms).forEach(item => {
                 if (item.checked === true) {
                     vm[varName] = item.value;

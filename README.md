@@ -1,22 +1,44 @@
-# 这是一个简单的前端构建工具
-## 执行方式 在命令行执行gulp就可以自动编译less和js
-## 运行环境node v15.3.0
-## 开发运行步骤
-* npm i //如果没有安装依赖，先执行这一步
-* gulp 
-## 打包步骤
-* gulp    //先编译，成功后再执行打包
-* gulp prod   //打包
+# 检测dom是否在视图内
 
-## 目录说明
-* src 开发目录
-* tmp 开发过程编译出来的临时目录
-* prod 打包发布的目录
+## 提供函数列表
+| 函数名        | 说明    |  参数  |
+| --------     | :-----   | :----|
+| isInDomView   | 检测dom在容器dom内是否可见      |   参考isInDomView说明   |
+| isInView        | 检测dom在窗口内是否完全可见    |   检测的dom   |
 
-## src目录说明
-* html  存放html页面文件
-* template  存放html模板文件
-* libs 存放第三方依赖，不参与编译的文件
-* less 存放less文件
-*  js 存放需要编译的js文件
-* images 存放图片文件
+## 其他辅助函数
+| 函数名        | 说明    |  参数  |
+| --------     | :-----   | :---- |
+| getBoundingClientRect   |   获取dom的rect对象    | 对象  { dom, rotate }   |
+| getRectHeight        |   获取dom的rect对象的高度  |  对象 { dom, rotate }    |
+| getRectWidth        |   获取dom的rect对象的宽度  |  对象  { dom, rotate }   |
+| getViewPortHeight        | 获取视图高度    |   -   |
+| getViewPortWidth        |   获取视图宽度  |    -  |
+| getBodyScrollY        |   获取body Y轴滚动  |   -   |
+| getBodyScrollY        |   获取body Y轴滚动  |   -   |
+| getDomScrollX        |   获取 dom X轴滚动  |    dom  |
+| getDomScrollY        |  获取dom Y轴滚动   |   dom   |
+
+
+## 示意图
+
+### 图1
+![图一](./imgs/img1.png)
+### 图2
+![图一](./imgs/img1.png)
+
+## api 说明
+### isInDomView
+#### 说明
+兼容dom在父容器里面是否可见
+#### 参数
+对象类型
+**dom**: 兼容测dom
+**wrapDom**: 检测dom的父容器
+**overallVisible**: 是否部分在父容器可见，默认否，如果设置了true，那一部分可见isInDomView函数也会返回true，如【图2】,否则只有如图一时候才会true
+
+
+
+
+
+

@@ -38,15 +38,31 @@
             <label>
                 <input type="radio" name="labelInWrapView" value="2">
                 部分</label>
+            <p>
+
+
             <div class="btn">
                 <span v-data="labelInWrapView">--</span>
             </div>
+        </div>
+        <div class="btnGroup ">
+            旋转： <label>
+                <input type="radio" name="labelInWrapViewRotate" checked value="0">
+                0</label>
+            <label>
+                <input type="radio" name="labelInWrapViewRotate" value="-90">
+                -90</label>
+            <label>
+                <input type="radio" name="labelInWrapViewRotate" value="90">
+                90</label>
+            </p>
+            <span style="margin-left:10px;">目前旋转角度:</span><span v-data="wrapView1Rotate">-</span>
+            <button onClick="demo1Rotate('#wrap','labelInWrapViewRotate','wrapView1Rotate')">确认旋转</button>
         </div>
         <h1>demo2</h1>
         <div class="btnGroup ">
             <button onclick="checkInView('#wrap2','wrapInView2')">点击 检查#wrap2是否在可视区</button>
             <div class="btn">
-
                 <span v-data="wrapInView2">--</span>
             </div>
         </div>
@@ -69,13 +85,28 @@
                 <span v-data="labelInWrapView2">--</span>
             </div>
         </div>
+        <div class="btnGroup ">
+            旋转： <label>
+                <input type="radio" name="wrapView2Rotate" checked value="0">
+                0</label>
+            <label>
+                <input type="radio" name="wrapView2Rotate" value="-90">
+                -90</label>
+            <label>
+                <input type="radio" name="wrapView2Rotate" value="90">
+                90</label>
+            </p>
+            <span style="margin-left:10px;">目前旋转角度:</span><span v-data="wrapView1Rotate">-</span>
+            <button onClick="demo1Rotate('#wrap2','wrapView2Rotate','wrapView1Rotate')">确认旋转</button>
+        </div>
     </div>
 
     <h1>demo1</h1>
     <div class="wrap" id="wrap">
         <div class="inner ">
             这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问， 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
-            <span class="label label-blue" id="label">#label</span>有几？ 据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
+            <span class="label label-blue" id="label">#label</span>有几？
+            据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
         </div>
     </div>
     <div style="height:200px"></div>
@@ -83,7 +114,8 @@
     <div class="wrap" id="wrap2">
         <div class="inner inner2">
             这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问， 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
-            <span class="label label-blue" id="label2">#label2</span>有几？ 据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
+            <span class="label label-blue" id="label2">#label2</span>有几？
+            据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
         </div>
     </div>
     <script src="../js/inViewUtils.js">
@@ -94,14 +126,15 @@
             wrapInView: false, //#wrap是否在可视区
             labelInView: false, //#label是否在可视区内
             labelInWrapView: false, //#label是否在#wrap可视区内
-
+            wrapView1Rotate: 0,
 
             wrapInView2: false, //#wrap是否在可视区
+            wrapView2Rotate: 0,
             labelInView2: false, //#label是否在可视区内
             labelInWrapView2: false, //#label是否在#wrap可视区内
         };
         var vm = MVVM(state);
-        window.onload = function() {
+        window.onload = function () {
             //检查是否在视图
             checkInView('#wrap', 'wrapInView');
             checkInView('#label', 'labelInView');
@@ -109,7 +142,19 @@
             checkInView('#wrap2', 'wrapInView2');
             checkInView('#label2', 'labelInView2');
         }
+        //旋转dom
+        var demo1Rotate = function (domID, radiousname, varName) {
+            var doms = document.querySelectorAll(`input[type=radio][name=${radiousname}]`);
 
+            Array.from(doms).forEach(item => {
+                if (item.checked === true) {
+                    vm[varName] = item.value;
+                }
+            })
+            document.querySelector(domID).style.cssText = `
+                transform: rotate(${vm[varName]}deg);
+            `;
+        }
         //检查是否在浏览器可视区
         function checkInView(dom, varName) {
             console.warn("check dom:", document.querySelector(dom))

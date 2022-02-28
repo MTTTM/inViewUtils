@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body::before {
+  content: "";
+  display: block;
+  height: 1300px;
+}
+body::after {
+  content: "";
+  display: block;
+  height: 300px;
+}
+.wrap {
+  margin: 10px;
+  border: 1px solid #eee;
+  width: 300px;
+  height: 40px;
+  overflow: auto;
+  overflow: overlay;
+  background: #eee;
+  padding: 10px;
+  position: relative;
+}
+.wrap.wrap2 {
+  height: 200px;
+}
+.wrap .inner {
+  background: palevioletred;
+  position: relative;
+  z-index: 100;
+}
+.wrap .inner::after {
+  content: "#wrap";
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+  font-weight: 900;
+  z-index: 999;
+  pointer-events: none;
+}
+.wrap .inner2 {
+  word-break: keep-all;
+  white-space: nowrap;
+}
+.wrap .inner2::after {
+  content: "#wrap2";
+}
+.label {
+  display: inline-block;
+  background: red;
+  color: #fff;
+}
+.label-blue {
+  background-color: blue;
+}
+h1 {
+  background-color: #eee;
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.cover2 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(134, 177, 18, 0.5);
+}
+.cover2::after {
+  content: "#cover3覆盖内也不算在视图内";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: red;
+  font-size: 14px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+  font-weight: 900;
+  z-index: 999;
+  pointer-events: none;
+}
+.fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background-color: rgba(8, 150, 8, 0.2);
+}
+.fixed::after {
+  content: "#cover覆盖内也不算在视图内";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 14px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+  font-weight: 900;
+  z-index: 999;
+  pointer-events: none;
+}
+.opation {
+  position: fixed;
+  top: 0px;
+  right: 0;
+  width: 100px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  min-width: 300px;
+  width: 100%;
+  z-index: 999;
+}
+.btnGroup {
+  display: flex;
+  padding: 5px 10px;
+}
+.btnGroup.btnGroup {
+  margin-top: 2px;
+}
+.btnGroup .btn,
+.btnGroup button {
+  margin-left: 10px;
+}
+.btnGroup button {
+  line-height: 20px;
+}
+.btnGroup .btn {
+  color: #fff;
+  background: black;
+}
+.warning {
+  color: #fff;
+  background: red;
+}

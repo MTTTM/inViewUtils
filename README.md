@@ -5,6 +5,7 @@
 | --------     | :-----   | :----|:----|
 | isInDomView   | 检测dom在容器dom内是否可见      |   参考isInDomView说明   | boolean|
 | isInView        | 检测dom在窗口内是否完全可见    |   检测的dom   | boolean|
+| getScrollableChildren |获取可滚动的子节点一个或者null |参考 getScrollableChildren 说明|dom或null|
 
 ## 其他辅助函数
 | 函数名        | 说明    |  参数  |返回值|
@@ -33,9 +34,21 @@
 兼容dom在父容器里面是否可见
 #### 参数
 对象类型
-**dom**: 兼容测dom
+**dom**: 检测的目标dom
 **wrapDom**: 检测dom的父容器
 **overallVisible**: 是否部分在父容器可见，默认否，如果设置了true，那一部分可见isInDomView函数也会返回true，如【图2】,否则只有如图一时候才会true
+
+### getScrollableChildren
+#### 说明
+获取dom里面可滚动的元素，再返回来，如果没有就是null
+
+#### 参数
+* 参数一：要检测的dom
+* 参数二:最大层次遍历次数
+* 参数三:滚动的方向，可选v(垂直，默认)和h(水平滚动)
+
+#### 返回
+一个dom或者null
 
 
 

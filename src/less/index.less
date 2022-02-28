@@ -24,7 +24,9 @@ body {
   background: #eee;
   padding: 10px;
   position: relative;
-
+ &.wrap2{
+   height: 200px;
+ }
   .inner {
     background: palevioletred;
     position: relative;
@@ -33,7 +35,6 @@ body {
       content: "#wrap";
       display: flex;
       justify-content: center;
-      align-items: center;
       width: 100%;
       height: 100%;
       color: rgba(0, 0, 0, 0.8);
@@ -68,6 +69,57 @@ h1 {
   text-align: center;
   margin-bottom: 10px;
   padding-bottom: 10px;
+}
+.cover2{
+  position: absolute;
+  left:0;
+  bottom:0;
+  height:100px;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(134, 177, 18,.5);
+  &::after {
+    content: "#cover3覆盖内也不算在视图内";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: red;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    font-weight: 900;
+    z-index: 999;
+    pointer-events: none;
+  }
+}
+.fixed{
+  position: fixed;
+  bottom: 0;
+  left:0;
+  width:100%;
+  height: 200px;
+  background-color: rgba(8, 150, 8,.2);
+  &::after {
+    content: "#cover覆盖内也不算在视图内";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    font-weight: 900;
+    z-index: 999;
+    pointer-events: none;
+  }
 }
 
 .opation {

@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-size: 12px;
 }
 body::before {
   content: "";
@@ -65,8 +66,7 @@ body::after {
 h1 {
   background-color: #eee;
   text-align: center;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+  font-size: 12px;
 }
 .cover2 {
   position: absolute;
@@ -75,10 +75,10 @@ h1 {
   height: 100px;
   width: 100%;
   z-index: 100;
-  background-color: rgba(134, 177, 18, 0.5);
+  background-color: rgba(8, 6, 109, 0.5);
 }
 .cover2::after {
-  content: "#cover3覆盖内也不算在视图内";
+  content: "#cover2覆盖内也不算在视图内";
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,10 +132,7 @@ h1 {
 }
 .btnGroup {
   display: flex;
-  padding: 5px 10px;
-}
-.btnGroup.btnGroup {
-  margin-top: 2px;
+  padding: 0 10px;
 }
 .btnGroup .btn,
 .btnGroup button {

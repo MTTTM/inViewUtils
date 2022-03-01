@@ -6,6 +6,7 @@
 | isInDomView   | 检测dom在容器dom内是否可见      |   参考isInDomView说明   | boolean|
 | isInView        | 检测dom在窗口内是否完全可见    |   检测的dom   | boolean|
 | getScrollableChildren |获取可滚动的子节点一个或者null |参考 getScrollableChildren 说明|dom或null|
+| getDomToVisbleDis        | 获取dom进入容器可视区距离    |   参考getDomToVisbleDis 说明   | number或null|
 
 ## 其他辅助函数
 | 函数名        | 说明    |  参数  |返回值|
@@ -50,6 +51,15 @@
 #### 返回
 一个dom或者null
 
+### getDomToVisbleDis 
+#### 说明
+获取dom到容器可视区的距离，容器可以是可滚动的dom标签，也可以是window
+
+####  参数
+
+* 参数1: dom ,被检测的元素
+* 参数2:  dom(可滚动容器)或者window
+* 参数3:   底部遮罩的高度
 
 
 

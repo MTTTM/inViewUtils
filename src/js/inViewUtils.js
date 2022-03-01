@@ -1,40 +1,77 @@
 //dom 相关==========================
-export const getBoundingClientRect = function({ dom, rotate = 0 } = {}) {
-    return dom.getBoundingClientRect();
+export const getBoundingClientRect = function ({ dom, rotate = 0 } = {}) {
+    let rect = dom.getBoundingClientRect();
+    if (rotate == 90) {
+        //x left
+        //y top
+        let obj = {
+            left: rect.top,
+            x: rect.top,
+
+            y: rect.right,
+            top: rect.right,
+
+            right: rect.bottom,
+            bottom: rect.left,
+
+            width: rect.height,
+            height: rect.width
+        }
+        return obj;
+    }
+    else if (rotate == -90) {
+        //x left
+        //y top
+        let obj = {
+            left: rect.bottom,
+            x: rect.bottom,
+
+            y: rect.left,
+            top: rect.left,
+
+            right: rect.top,
+            bottom: rect.right,
+
+            width: rect.height,
+            height: rect.width
+        }
+        return obj;
+    }
+    return rect;
 };
 
-export const getRectWidth = function({ dom, rotate = 0 } = {}) {
+export const getRectWidth = function ({ dom, rotate = 0 } = {}) {
     let obj = getBoundingClientRect({ dom, rotate });
     return obj.width;
 };
-export const getRectHeight = function({ dom, rotate = 0 } = {}) {
+export const getRectHeight = function ({ dom, rotate = 0 } = {}) {
     let obj = getBoundingClientRect({ dom, rotate });
     return obj.height;
 };
 
 //窗口相关
-export const getViewPortHeight = function({ rotate = 0 } = {}) {
+export const getViewPortHeight = function ({ rotate = 0 } = {}) {
     return !rotate ? window.innerHeight : window.innerWidth;
 };
-export const getViewPortWidth = function({ rotate = 0 } = {}) {
+export const getViewPortWidth = function ({ rotate = 0 } = {}) {
     return !rotate ? window.innerWidth : window.innerHeight;
 };
 //滚动相关
-export const getBodyScrollY = function() {
+export const getBodyScrollY = function () {
     return document.documentElement.scrollTop || document.body.scrollTop;
 };
-export const getBodyScrollX = function() {
+export const getBodyScrollX = function () {
     return document.documentElement.scrollLeft || document.body.scrollLeft;
 };
-export const getDomScrollX = function(dom) {
+export const getDomScrollX = function (dom) {
     return dom.scrollLeft;
 };
-export const getDomScrollY = function(dom) {
+export const getDomScrollY = function (dom) {
     return dom.scrollTop;
 };
 
 //是否在窗口可视区
-export const isInView = function({ dom, rotate, otherHeight = 0 }) {
+export const isInView = function ({ dom, rotate, otherHeight = 0 }) {
     let rect = getBoundingClientRect({ dom: dom });
     let viewHeight = getViewPortHeight({});
     // console.log("otherHeight", otherHeight)
@@ -51,7 +88,7 @@ export const isInView = function({ dom, rotate, otherHeight = 0 }) {
  *  overallVisible 是否完全都在可视区
  * otherHeight 底部覆盖元素高度
  */
-export const isInDomView = function({
+export const isInDomView = function ({
     dom,
     wrapDom,
     rotate,
@@ -112,7 +149,7 @@ export const isInDomView = function({
  * @param {*} dir  检测滚动方向
  * @returns  dom
  */
-export const getScrollableChildren = function(box, maxLoop = 100, dir = "v") {
+export const getScrollableChildren = function (box, maxLoop = 100, dir = "v") {
     let v = 0;
     let direction = dir == "h" ? "h" : "v";
     var result = null;
@@ -148,9 +185,12 @@ export const getScrollableChildren = function(box, maxLoop = 100, dir = "v") {
  * @param {*} viewPort 可能是dom，可能是window
  * @param {*} otherHeight
  */
-export const getDomToVisbleDis = function(dom, viewPort, otherHeight = 0) {
+export const getDomToVisbleDis = function (dom, viewPort, otherHeight = 0) {
     let rect = getBoundingClientRect({ dom });
-    if (viewPort instanceof Element) {} else {
+    if (viewPort instanceof Element) {
+        let wrapRect = getBoundingClientRect({ dom: viewPort });
+        return rect.bottom - wrapRect.bottom + otherHeight
+    } else {
         //dom在容器dom可视区的距离
         return rect.bottom - getViewPortHeight() + otherHeight;
     }

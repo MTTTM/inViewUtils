@@ -180,19 +180,26 @@ export const getScrollableChildren = function (box, maxLoop = 100, dir = "v") {
     return check(box, maxLoop);
 };
 /**
- *  获取dom到完全可见的距离
+ *  获取dom到Y轴完全可见的距离
  * @param {*} dom
  * @param {*} viewPort 可能是dom，可能是window
  * @param {*} otherHeight
+ * @returns {x:number,y:number}
  */
-export const getDomToVisbleDis = function (dom, viewPort, otherHeight = 0) {
+export const getDomToVisbleDis = function (dom, viewPort, yOtherHeight = 0, xOtherHeight = 0) {
     let rect = getBoundingClientRect({ dom });
     if (viewPort instanceof Element) {
         let wrapRect = getBoundingClientRect({ dom: viewPort });
-        return rect.bottom - wrapRect.bottom + otherHeight
+        return {
+            y: rect.bottom - wrapRect.bottom + yOtherHeight,
+            x: rect.left - wrapRect.left + xOtherHeight,
+        }
     } else {
-        //dom在容器dom可视区的距离
-        return rect.bottom - getViewPortHeight() + otherHeight;
+        //dom在容器window可视区的距离
+        return {
+            y: rect.bottom - getViewPortHeight() + yOtherHeight,
+            x: rect.left - getViewPortWidth() + xOtherHeight,
+        }
     }
     return null;
 };

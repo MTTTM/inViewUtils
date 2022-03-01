@@ -263,7 +263,7 @@
             }) : 0;
             var viewProt = document.querySelector(domSeleterString);
             let dis = inViewUtils.getDomToVisbleDis(document.querySelector(dom), viewProt, coverHeight);
-            vm[varName] = dis;
+            vm[varName] = dis.y;
         }
         //让窗口滚动到指定距离
         function windowScroll(varName) {

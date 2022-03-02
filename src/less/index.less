@@ -32,6 +32,7 @@ body {
     background: palevioletred;
     position: relative;
     z-index: 100;
+    pointer-events: none;
     &::after {
       content: "#wrap";
       display: flex;
@@ -68,7 +69,6 @@ body {
 h1 {
   background-color: #eee;
   text-align: center;
- 
   font-size: 12px;
 }
 .cover2 {
@@ -78,6 +78,7 @@ h1 {
   height: 100px;
   width: 100%;
   z-index: 100;
+  pointer-events: none;
   background-color: rgba(8, 6, 109, 0.5);
   &::after {
     content: "#cover2覆盖内也不算在视图内";
@@ -103,6 +104,7 @@ h1 {
   left: 0;
   width: 100%;
   height: 200px;
+  pointer-events: none;
   background-color: rgba(8, 150, 8, 0.2);
   &::after {
     content: "#cover覆盖内也不算在视图内";
@@ -153,4 +155,10 @@ h1 {
 .warning {
   color: #fff;
   background: red;
+}
+.boxInner{
+  width: 100%;;
+  .inner{
+    width:150%;
+  }
 }

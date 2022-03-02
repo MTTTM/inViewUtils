@@ -31,6 +31,7 @@ body::after {
   background: palevioletred;
   position: relative;
   z-index: 100;
+  pointer-events: none;
 }
 .wrap .inner::after {
   content: "#wrap";
@@ -75,6 +76,7 @@ h1 {
   height: 100px;
   width: 100%;
   z-index: 100;
+  pointer-events: none;
   background-color: rgba(8, 6, 109, 0.5);
 }
 .cover2::after {
@@ -100,6 +102,7 @@ h1 {
   left: 0;
   width: 100%;
   height: 200px;
+  pointer-events: none;
   background-color: rgba(8, 150, 8, 0.2);
 }
 .fixed::after {
@@ -148,4 +151,10 @@ h1 {
 .warning {
   color: #fff;
   background: red;
+}
+.boxInner {
+  width: 100%;
+}
+.boxInner .inner {
+  width: 150%;
 }

@@ -186,7 +186,7 @@ export const getScrollableChildren = function (box, maxLoop = 100, dir = "v") {
  * @param {*} otherHeight
  * @returns {x:number,y:number}
  */
-export const getDomToVisbleDis = function (dom, viewPort, yOtherHeight = 0, xOtherHeight = 0) {
+export const getDomToVisbleDis = function ({ dom, viewPort, yOtherHeight = 0, xOtherHeight = 0 } = {}) {
     let rect = getBoundingClientRect({ dom });
     if (viewPort instanceof Element) {
         let wrapRect = getBoundingClientRect({ dom: viewPort });

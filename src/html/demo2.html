@@ -128,7 +128,8 @@
             <div class="btnGroup ">
                 <button
                     onclick="getDomToDomVisibleDis('#label2','#boxInner','labelToVisibleDis')">获取#label2到#boxInner可视区的距离</button>
-                <span v-data="labelToVisibleDis">--</span>
+                Y距离：<span v-data="labelToVisibleDis">--</span>
+                X距离：<span v-data="labelToVisibleDisX">--</span>
                 <button onclick="domScroll('#boxInner','labelToVisibleDis')">让#label2进入窗口可视区</button>
             </div>
         </div>
@@ -137,7 +138,8 @@
             <div class="btnGroup ">
                 <button
                     onclick="getDomToDomVisibleDis('#label2','#boxInner','labelToVisibleDisCover','#cover2')">获取#label2到#boxInner可视区的距离</button>
-                <span v-data="labelToVisibleDisCover">--</span>
+                Y距离: <span v-data="labelToVisibleDisCover">--</span>
+                X距离: <span v-data="labelToVisibleDisCoverX">--</span>
                 <button onclick="domScroll('#boxInner','labelToVisibleDisCover')">让#label2进入窗口可视区</button>
             </div>
         </div>
@@ -157,7 +159,7 @@
     <div class="wrap wrap2" id="wrap2">
         <div class="boxInner" id="boxInner" style="height:100%;overflow: auto;z-index:1;">
             <div class="inner inner">
-                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
+                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
                 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
                 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问， 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？ 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
                 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
@@ -184,8 +186,10 @@
             wrapView2Rotate: 0,
             labelInView2: false, //#label是否在可视区内
             labelInWrapView2: false, //#label2是否在#wrap可视区内
-            labelToVisibleDis: "--", //#label2到可视区的距离
+            labelToVisibleDis: "--", //#label2到可视区的Y距离
+            labelToVisibleDisX: "--", //#label2到可视区的X距离
             labelToVisibleDisCover: "-", //#label2到可视区的距离,计算遮罩无
+            labelToVisibleDisCoverX: "-", //#label2到可视区的距离,计算遮罩无
         };
         var vm = MVVM(state);
         window.onload = function () {
@@ -262,8 +266,13 @@
                 dom: document.querySelector(coverDom)
             }) : 0;
             var viewProt = document.querySelector(domSeleterString);
-            let dis = inViewUtils.getDomToVisbleDis(document.querySelector(dom), viewProt, coverHeight);
+            let dis = inViewUtils.getDomToVisbleDis({
+                dom: document.querySelector(dom),
+                viewPort: viewProt,
+                yOtherHeight: coverHeight
+            });
             vm[varName] = dis.y;
+            vm[varName + "X"] = dis.x;
         }
         //让窗口滚动到指定距离
         function windowScroll(varName) {
@@ -274,7 +283,8 @@
         function domScroll(wrapSeleter, varName) {
             var wrap = document.querySelector(wrapSeleter);
             console.log("wrap", wrap, "xx", vm[varName])
-            wrap.scrollBy(0, vm[varName]);
+            let x = vm[varName + "X"] ? vm[varName + "X"] : 0;
+            wrap.scrollBy(x, vm[varName]);
         }
     </script>
 </body>

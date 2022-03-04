@@ -145,7 +145,8 @@
                 <button onclick="domScroll('#boxInner','labelToVisibleDisCover')">让#label2进入窗口可视区</button>
             </div>
         </div>
-
+        <h1>demo3 让#wrap 进入窗口可视区</h1>
+        <button onclick="letWrapInWinView()">点击</button>
     </div>
 
     <h1>demo1</h1>
@@ -254,28 +255,26 @@
         //获取dom到窗口可视区的距离
         //'#wrap',window,'wrapToVisibleDis',"#cover"
         function getDomToVisibleDis(dom, viewProt, varName, coverDom, rotateVarName) {
-            console.log('document.querySelector(coverDom)', document.querySelector(coverDom), coverDom)
-            var coverHeight = coverDom ? inViewUtils.getBlockHeight({
-                dom: document.querySelector(coverDom)
-            }) : 0;
-            console.log("rotateVarName##", rotateVarName, vm[rotateVarName])
-            let dis = inViewUtils.getDomToVisbleDis(document.querySelector(dom), viewProt, coverHeight, rotateVarName);
+
+            var coverHeight = document.querySelector(coverDom) ? inViewUtils.getBlockHeight(document.querySelector(coverDom)) : 0;
+
+            let dis = inViewUtils.getDomToVisbleDis({ dom: document.querySelector(dom), viewPort: viewProt, yOtherHeight: coverHeight, rotate: rotateVarName });
             vm[varName] = dis;
+            console.log("View", dis)
         }
         //检测dom在容器dom内到可视区的距离
         function getDomToDomVisibleDis(dom, domSeleterString, varName, coverDom, rotateVarName) {
-            console.log("rotateVarName", rotateVarName, vm[rotateVarName])
-            var coverHeight = coverDom ? inViewUtils.getBlockHeight({
-                dom: document.querySelector(coverDom)
-            }) : 0;
+
+            var coverHeight = coverDom ? inViewUtils.getBlockHeight(document.querySelector(coverDom)) : 0;
             var viewProt = document.querySelector(domSeleterString);
-            console.log("coverHeight....", coverHeight)
+
             let dis = inViewUtils.getDomToVisbleDis({
                 dom: document.querySelector(dom),
                 viewPort: viewProt,
                 yOtherHeight: coverHeight,
                 rotate: vm[rotateVarName]
             });
+            console.log("dis=======", dis)
             vm[varName] = dis.y;
             vm[varName + "X"] = dis.x;
 
@@ -283,8 +282,6 @@
         //让窗口滚动到指定距离
         function windowScroll(varName) {
             window.scrollBy(0, vm[varName])
-
-
         }
 
         function domScroll(wrapSeleter, varName) {
@@ -292,6 +289,13 @@
             console.log("wrap", wrap, "xx", vm[varName])
             let x = vm[varName + "X"] ? vm[varName + "X"] : 0;
             wrap.scrollBy(x, vm[varName]);
+        }
+        //让#wrap进入窗口视图
+        function letWrapInWinView() {
+            let wrap = document.querySelector("#wrap");
+            let disObj = inViewUtils.getDomToViewVisbleDis({ dom: wrap });
+            console.log("disObj", disObj)
+            window.scrollBy(disObj.x, disObj.y)
         }
     </script>
 </body>

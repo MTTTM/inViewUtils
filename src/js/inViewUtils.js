@@ -1,80 +1,54 @@
 //窗口相关
-export const getViewPortHeight = function({ rotate = 0 } = {}) {
-    return !rotate ? window.innerHeight : window.innerWidth;
+export const getViewPortHeight = function () {
+    return window.innerHeight;
 };
-export const getViewPortWidth = function({ rotate = 0 } = {}) {
-    return !rotate ? window.innerWidth : window.innerHeight;
+export const getViewPortWidth = function () {
+    return window.innerWidth;
 };
+
 //dom 相关==========================
-export const getBoundingClientRect = function({ dom, rotate = 0 } = {}) {
+export const getComputedStyle = window.getComputedStyle;//获取dom真实样式
+//getBoundingClientRect 返回的width，height 永远是相对设备方向而言的，如果旋转了90度，width就等于样式高
+export const getBoundingClientRect = function ({ dom, rotate = 0 } = {}) {
     let rect = dom.getBoundingClientRect();
-    let ViewHeight = getViewPortHeight({ rotate });
-    let ViewWidth = getViewPortWidth({ rotate });
-    if (rotate == 90) {
-        //x left
-        //y top
-        //一定要参考  图示 https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
-        let obj = {
-            left: rect.top,
-            x: rect.top,
-
-            y: ViewHeight - rect.left,
-            top: ViewHeight - rect.left,
-
-            right: rect.bottom,
-            bottom: rect.bottom,
-
-            width: rect.width,
-            height: rect.height,
-        };
-        return obj;
-    } else if (rotate == -90) {
-        //x left
-        //y top
-        //一定要参考  图示 https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
-        let obj = {
-            left: ViewWidth - rect.bottom,
-            x: ViewWidth - rect.bottom,
-
-            y: rect.left,
-            top: rect.left,
-
-            right: ViewWidth - rect.bottom - rect.top,
-            bottom: ViewWidth - rect.bottom - rect.top,
-
-            width: rect.width,
-            height: rect.height,
-        };
-        return obj;
-    }
     return rect;
 };
-
-export const getRectWidth = function({ dom, rotate = 0 } = {}) {
+//获取相对用户设备方向的宽
+export const getRectWidth = function ({ dom, rotate = 0 } = {}) {
     let obj = getBoundingClientRect({ dom, rotate });
     return obj.width;
 };
-export const getRectHeight = function({ dom, rotate = 0 } = {}) {
+//获取相对用户设备方向的高
+export const getRectHeight = function ({ dom, rotate = 0 } = {}) {
     let obj = getBoundingClientRect({ dom, rotate });
     return obj.height;
 };
-
+//获取计算后的样式宽
+export const getBlockWidth = function ({ dom, rotate = 0 } = {}) {
+    let obj = getComputedStyle(dom);
+    return parseInt(obj.width);
+};
+//获取计算后的样式高
+export const getBlockHeight = function ({ dom, rotate = 0 } = {}) {
+    let obj = getComputedStyle(dom);
+    return parseInt(obj.height);
+};
 //滚动相关
-export const getBodyScrollY = function() {
+export const getBodyScrollY = function () {
     return document.documentElement.scrollTop || document.body.scrollTop;
 };
-export const getBodyScrollX = function() {
+export const getBodyScrollX = function () {
     return document.documentElement.scrollLeft || document.body.scrollLeft;
 };
-export const getDomScrollX = function(dom) {
+export const getDomScrollX = function (dom) {
     return dom.scrollLeft;
 };
-export const getDomScrollY = function(dom) {
+export const getDomScrollY = function (dom) {
     return dom.scrollTop;
 };
 
 //是否在窗口可视区
-export const isInView = function({ dom, rotate, otherHeight = 0 }) {
+export const isInView = function ({ dom, rotate, otherHeight = 0 }) {
     let rect = getBoundingClientRect({ dom: dom });
     let viewHeight = getViewPortHeight({});
     // console.log("otherHeight", otherHeight)
@@ -91,7 +65,7 @@ export const isInView = function({ dom, rotate, otherHeight = 0 }) {
  *  overallVisible 是否完全都在可视区
  * otherHeight 底部覆盖元素高度
  */
-export const isInDomView = function({
+export const isInDomView = function ({
     dom,
     wrapDom,
     rotate,
@@ -152,7 +126,7 @@ export const isInDomView = function({
  * @param {*} dir  检测滚动方向
  * @returns  dom
  */
-export const getScrollableChildren = function(box, maxLoop = 100, dir = "v") {
+export const getScrollableChildren = function (box, maxLoop = 100, dir = "v") {
     let v = 0;
     let direction = dir == "h" ? "h" : "v";
     var result = null;
@@ -184,24 +158,44 @@ export const getScrollableChildren = function(box, maxLoop = 100, dir = "v") {
 };
 /**
  *  获取dom到Y轴完全可见的距离
- * @param {*} dom
+ * @param {*} dom ,【可滚动】的dom容器
  * @param {*} viewPort 可能是dom，可能是window
  * @param {*} otherHeight
  * @returns {x:number,y:number}
  */
-export const getDomToVisbleDis = function({
+export const getDomToVisbleDis = function ({
     dom,
     viewPort,
     yOtherHeight = 0,
     xOtherHeight = 0,
+    rotate = 0
 } = {}) {
     let rect = getBoundingClientRect({ dom });
+    let wrapStyle = getComputedStyle(dom);
+    let wrapHeight = getBlockHeight(dom);
+    let wrapPaddingTop = parseInt(wrapStyle.paddingTop);
+    let wrapPaddingBottom = parseInt(wrapStyle.paddingBottom);
+
+
     if (viewPort instanceof Element) {
-        let wrapRect = getBoundingClientRect({ dom: viewPort });
+        let wrapRect = getBoundingClientRect({ dom: viewPort, rotate });
+        console.log("rotate", rotate)
+        if (rotate == -90) {
+            // console.log("ROTATE", rotate, "Y 子节点:", rect.right, '容器', wrapRect.right, "距离", rect.right - wrapRect.right)
+            // console.log("X 子节点:", rect.bottom, '容器', wrapRect.bottom, "距离", rect.bottom - wrapRect.bottom)
+            // console.log("yOtherHeight", yOtherHeight)
+            return {
+                y: rect.right - wrapRect.right + wrapHeight + yOtherHeight - (wrapPaddingTop + wrapPaddingBottom),
+                x: wrapRect.bottom - rect.bottom + xOtherHeight,
+            };
+        }
+        else if (rotate == -90) {
+
+        }
         return {
-            y: rect.bottom - wrapRect.bottom + yOtherHeight,
+            y: rect.bottom - wrapRect.bottom + yOtherHeight - (wrapPaddingTop + wrapPaddingBottom),
             x: rect.left - wrapRect.left + xOtherHeight,
         };
-    } else {}
+    } else { }
     return null;
 };

@@ -13,147 +13,143 @@
 
 <body>
     <div class="opation">
-        <h1>demo1</h1>
-        <div class="btnGroup ">
-            <button onclick="checkInView('#wrap','wrapInView','#cover')">点击 检查#wrap是否在可视区</button>
-            <div class="btn">
-
-                <span v-data="wrapInView">--</span>
-            </div>
-        </div>
-        <div class="btnGroup ">
-            <button onclick="checkInView('#label','labelInView','#cover')">点击 检查#label是否在可视区</button>
-            <div class="btn">
-
-                <span v-data="labelInView">--</span>
-            </div>
-        </div>
-        <div class="btnGroup ">
-            <button onclick="checkInDomView('#label','#wrap','labelInWrapView')">点击 检查#label是否
-                在#wrap可视区内</button>
-
-            <label>
-                <input type="radio" name="labelInWrapView" checked value="1">
-                完全</label>
-            <label>
-                <input type="radio" name="labelInWrapView" value="2">
-                部分</label>
-            <p>
-
-
-            <div class="btn">
-                <span v-data="labelInWrapView">--</span>
-            </div>
-        </div>
-        <div class="btnGroup ">
-            旋转： <label>
-                <input type="radio" name="labelInWrapViewRotate" checked value="0">
-                0</label>
-            <label>
-                <input type="radio" name="labelInWrapViewRotate" value="-90">
-                -90</label>
-            <label>
-                <input type="radio" name="labelInWrapViewRotate" value="90">
-                90</label>
-            </p>
-            <span style="margin-left:10px;">目前旋转角度:</span><span v-data="wrapView1Rotate">-</span>
-            <button onClick="demo1Rotate('#wrap','labelInWrapViewRotate','wrapView1Rotate')">确认旋转</button>
-        </div>
-        <div>
-            不计算#cover在内，也就是被#cover遮住 <span class="warning">没事</span>
+        <div class="demo1">
+            <h1>demo1</h1>
             <div class="btnGroup ">
-                <button
-                    onclick="getDomToVisibleDis('#wrap',window,'wrapToVisibleDis',null,'wrapView1Rotate')">获取#wrap到可视区的距离</button>
-                <span v-data="wrapToVisibleDis">--</span>
-                <button onclick="windowScroll('wrapToVisibleDis')">让#wrap进入窗口可视区</button>
+                <button onclick="checkInView('#wrap','wrapInView','#cover')">点击 检查#wrap是否在可视区</button>
+                <div class="btn">
+
+                    <span v-data="wrapInView">--</span>
+                </div>
             </div>
-        </div>
-        <div>
-            计算#cover在内，也就是被#cover遮住 <span class="warning">不行</span>
             <div class="btnGroup ">
-                <button
-                    onclick="getDomToVisibleDis('#wrap',window,'wrapToVisibleDisCover','#cover','wrapView1Rotate')">获取#wrap到可视区的距离</button>
-                <span v-data="wrapToVisibleDisCover">--</span>
-                <button onclick="windowScroll('wrapToVisibleDisCover')">让#wrap进入窗口可视区</button>
+                <button onclick="checkInView('#label','labelInView','#cover')">点击 检查#label是否在可视区</button>
+                <div class="btn">
+
+                    <span v-data="labelInView">--</span>
+                </div>
             </div>
-        </div>
-
-
-
-
-
-        <h1>demo2</h1>
-        <div class="btnGroup ">
-            <button onclick="checkInView('#wrap2','wrapInView2')">点击 检查#wrap2是否在可视区</button>
-            <div class="btn">
-                <span v-data="wrapInView2">--</span>
-            </div>
-        </div>
-        <div class="btnGroup ">
-            <button onclick="checkInView('#label2','labelInView2')">点击 检查#label2是否在可视区</button>
-            <div class="btn">
-
-                <span v-data="labelInView2">--</span>
-            </div>
-        </div>
-        <div class="btnGroup ">
-            <button onclick="checkInDomView('#label2','#wrap2','labelInWrapView2','#cover2')">点击
-                检查#label2是否在#wrap可视区内</button>
-            <label>
-                <input type="radio" name="labelInWrapView2" checked value="1" onChange="">
-                完全</label>
-            <label>
-                <input type="radio" name="labelInWrapView2" value="2">
-                部分</label>
-            <div class="btn">
-                <span v-data="labelInWrapView2">--</span>
-            </div>
-        </div>
-        <div class="btnGroup ">
-            旋转： <label>
-                <input type="radio" name="wrapView2Rotate" checked value="0">
-                0</label>
-            <label>
-                <input type="radio" name="wrapView2Rotate" value="-90">
-                -90</label>
-            <label>
-                <input type="radio" name="wrapView2Rotate" value="90">
-                90</label>
-            </p>
-            <span style="margin-left:10px;">目前旋转角度:</span><span v-data="wrapView2Rotate">-</span>
-            <button onClick="demo1Rotate('#wrap2','wrapView2Rotate','wrapView2Rotate')">确认旋转</button>
-        </div>
-
-        <div>
-            不计算#cover2在内，也就是被#cover2遮住 <span class="warning">没事</span>
             <div class="btnGroup ">
-                <button
-                    onclick="getDomToDomVisibleDis('#label2','#boxInner','labelToVisibleDis',null,'wrapView2Rotate')">获取#label2到#boxInner可视区的距离</button>
-                Y距离：
-                <span v-data="labelToVisibleDis">--</span> X距离：
-                <span v-data="labelToVisibleDisX">--</span>
-                <button onclick="domScroll('#boxInner','labelToVisibleDis')">让#label2进入窗口可视区</button>
+                <button onclick="checkInDomView('#label','#wrap','labelInWrapView')">点击 检查#label是否
+                    在#wrap可视区内</button>
+
+                <label>
+                    <input type="radio" name="labelInWrapView" checked value="1">
+                    完全</label>
+                <label>
+                    <input type="radio" name="labelInWrapView" value="2">
+                    部分</label>
+                <p>
+
+
+                    <div class="btn">
+                        <span v-data="labelInWrapView">--</span>
+                    </div>
             </div>
-        </div>
-        <div>
-            计算#cover在内，也就是被#cover遮住 <span class="warning">不行</span>
             <div class="btnGroup ">
-                <button
-                    onclick="getDomToDomVisibleDis('#label2','#boxInner','labelToVisibleDisCover','#cover2','wrapView2Rotate')">获取#label2到#boxInner可视区的距离</button>
-                Y距离: <span v-data="labelToVisibleDisCover">--</span> X距离: <span
-                    v-data="labelToVisibleDisCoverX">--</span>
-                <button onclick="domScroll('#boxInner','labelToVisibleDisCover')">让#label2进入窗口可视区</button>
+                旋转： <label>
+                    <input type="radio" name="labelInWrapViewRotate" checked value="0">
+                    0</label>
+                <label>
+                    <input type="radio" name="labelInWrapViewRotate" value="-90">
+                    -90</label>
+                <label>
+                    <input type="radio" name="labelInWrapViewRotate" value="90">
+                    90</label>
+                </p>
+                <span style="margin-left:10px;">目前旋转角度:</span><span v-data="wrapView1Rotate">-</span>
+                <button onClick="demo1Rotate('#wrap','labelInWrapViewRotate','wrapView1Rotate')">确认旋转</button>
+            </div>
+            <div>
+                不计算#cover在内，也就是被#cover遮住 <span class="warning">没事</span>
+                <div class="btnGroup ">
+                    <button onclick="getDomToVisibleDis('#wrap',window,'wrapToVisibleDis',null,'wrapView1Rotate')">获取#wrap到可视区的距离</button>
+                    <span v-data="wrapToVisibleDis">--</span>
+                    <button onclick="windowScroll('wrapToVisibleDis')">让#wrap进入窗口可视区</button>
+                </div>
+            </div>
+            <div>
+                计算#cover在内，也就是被#cover遮住 <span class="warning">不行</span>
+                <div class="btnGroup ">
+                    <button onclick="getDomToVisibleDis('#wrap',window,'wrapToVisibleDisCover','#cover','wrapView1Rotate')">获取#wrap到可视区的距离</button>
+                    <span v-data="wrapToVisibleDisCover">--</span>
+                    <button onclick="windowScroll('wrapToVisibleDisCover')">让#wrap进入窗口可视区</button>
+                </div>
             </div>
         </div>
 
+
+        <div class="demo2">
+            <h1>demo2</h1>
+            <div class="btnGroup ">
+                <button onclick="checkInView('#wrap2','wrapInView2')">点击 检查#wrap2是否在可视区</button>
+                <div class="btn">
+                    <span v-data="wrapInView2">--</span>
+                </div>
+            </div>
+            <div class="btnGroup ">
+                <button onclick="checkInView('#label2','labelInView2')">点击 检查#label2是否在可视区</button>
+                <div class="btn">
+
+                    <span v-data="labelInView2">--</span>
+                </div>
+            </div>
+            <div class="btnGroup ">
+                <button onclick="checkInDomView('#label2','#wrap2','labelInWrapView2','#cover2')">点击
+                    检查#label2是否在#wrap可视区内</button>
+                <label>
+                    <input type="radio" name="labelInWrapView2" checked value="1" onChange="">
+                    完全</label>
+                <label>
+                    <input type="radio" name="labelInWrapView2" value="2">
+                    部分</label>
+                <div class="btn">
+                    <span v-data="labelInWrapView2">--</span>
+                </div>
+            </div>
+            <div class="btnGroup ">
+                旋转： <label>
+                    <input type="radio" name="wrapView2Rotate" checked value="0">
+                    0</label>
+                <label>
+                    <input type="radio" name="wrapView2Rotate" value="-90">
+                    -90</label>
+                <label>
+                    <input type="radio" name="wrapView2Rotate" value="90">
+                    90</label>
+                </p>
+                <span style="margin-left:10px;">目前旋转角度:</span><span v-data="wrapView2Rotate">-</span>
+                <button onClick="demo1Rotate('#wrap2','wrapView2Rotate','wrapView2Rotate')">确认旋转</button>
+            </div>
+
+            <div>
+                不计算#cover2在内，也就是被#cover2遮住 <span class="warning">没事</span>
+                <div class="btnGroup ">
+                    <button onclick="getDomToDomVisibleDis('#label2','#boxInner','labelToVisibleDis',null,'wrapView2Rotate')">获取#label2到#boxInner可视区的距离</button> Y距离：
+                    <span v-data="labelToVisibleDis">--</span> X距离：
+                    <span v-data="labelToVisibleDisX">--</span>
+                    <button onclick="domScroll('#boxInner','labelToVisibleDis')">让#label2进入窗口可视区(如果操作过，请刷新后再来)</button>
+                </div>
+            </div>
+            <div>
+                计算#cover在内，也就是被#cover遮住 <span class="warning">不行</span>
+                <div class="btnGroup ">
+                    <button onclick="getDomToDomVisibleDis('#label2','#boxInner','labelToVisibleDisCover','#cover2','wrapView2Rotate')">获取#label2到#boxInner可视区的距离</button> Y距离: <span v-data="labelToVisibleDisCover">--</span> X距离: <span v-data="labelToVisibleDisCoverX">--</span>
+                    <button onclick="domScroll('#boxInner','labelToVisibleDisCover')">让#label2进入窗口可视区(如果操作过，请刷新后再来)</button>
+                </div>
+            </div>
+
+        </div>
     </div>
+
+
+
 
     <h1>demo1</h1>
     <div class="wrap" id="wrap">
         <div class="inner ">
             这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问， 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
-            <span class="label label-blue" id="label">#label</span>有几？
-            据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
+            <span class="label label-blue" id="label">#label</span>有几？ 据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
         </div>
     </div>
     <div style="height:200px"></div>
@@ -161,13 +157,9 @@
     <div class="wrap wrap2" id="wrap2" style="overflow: hidden;padding:0;">
         <div class="boxInner" id="boxInner" style="height:100%;overflow: auto;    overflow: overlay;z-index:1;">
             <div class="inner inner">
-                实在奇。奇
-                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
-                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？ 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
-                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？ 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
-                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
-                <span class="label label-blue" id="label2">#label2</span>有几？
-                据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
+                实在奇。奇 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
+                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？ 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问， 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？ 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问， 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
+                <span class="label label-blue" id="label2">#label2</span>有几？ 据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
             </div>
         </div>
         <div class="cover2" id="cover2"></div>
@@ -195,27 +187,27 @@
             labelToVisibleDisCoverX: "-", //#label2到可视区的距离,计算遮罩无
         };
         var vm = MVVM(state);
-        window.onload = function () {
-            //检查是否在视图
-            checkInView('#wrap', 'wrapInView');
-            checkInView('#label', 'labelInView');
+        window.onload = function() {
+                //检查是否在视图
+                checkInView('#wrap', 'wrapInView');
+                checkInView('#label', 'labelInView');
 
-            checkInView('#wrap2', 'wrapInView2');
-            checkInView('#label2', 'labelInView2');
-        }
-        //旋转dom
-        var demo1Rotate = function (domID, radiousname, varName) {
-            var doms = document.querySelectorAll(`input[type=radio][name=${radiousname}]`);
-            Array.from(doms).forEach(item => {
-                if (item.checked === true) {
-                    vm[varName] = item.value;
-                }
-            })
-            document.querySelector(domID).style.cssText = `
+                checkInView('#wrap2', 'wrapInView2');
+                checkInView('#label2', 'labelInView2');
+            }
+            //旋转dom
+        var demo1Rotate = function(domID, radiousname, varName) {
+                var doms = document.querySelectorAll(`input[type=radio][name=${radiousname}]`);
+                Array.from(doms).forEach(item => {
+                    if (item.checked === true) {
+                        vm[varName] = item.value;
+                    }
+                })
+                document.querySelector(domID).style.cssText = `
                 transform: rotate(${vm[varName]}deg);
             `;
-        }
-        //检查是否在浏览器可视区
+            }
+            //检查是否在浏览器可视区
         function checkInView(dom, varName, coverId) {
             console.warn("check dom:", document.querySelector(dom))
             var coverDom = document.querySelector(coverId);
@@ -255,9 +247,7 @@
         //'#wrap',window,'wrapToVisibleDis',"#cover"
         function getDomToVisibleDis(dom, viewProt, varName, coverDom, rotateVarName) {
             console.log('document.querySelector(coverDom)', document.querySelector(coverDom), coverDom)
-            var coverHeight = coverDom ? inViewUtils.getBlockHeight({
-                dom: document.querySelector(coverDom)
-            }) : 0;
+            var coverHeight = coverDom ? inViewUtils.getBlockHeight(document.querySelector(coverDom)) : 0;
             console.log("rotateVarName##", rotateVarName, vm[rotateVarName])
             let dis = inViewUtils.getDomToVisbleDis(document.querySelector(dom), viewProt, coverHeight, rotateVarName);
             vm[varName] = dis;
@@ -265,9 +255,7 @@
         //检测dom在容器dom内到可视区的距离
         function getDomToDomVisibleDis(dom, domSeleterString, varName, coverDom, rotateVarName) {
             console.log("rotateVarName", rotateVarName, vm[rotateVarName])
-            var coverHeight = coverDom ? inViewUtils.getBlockHeight({
-                dom: document.querySelector(coverDom)
-            }) : 0;
+            var coverHeight = coverDom ? inViewUtils.getBlockHeight(document.querySelector(coverDom)) : 0;
             var viewProt = document.querySelector(domSeleterString);
             console.log("coverHeight....", coverHeight)
             let dis = inViewUtils.getDomToVisbleDis({
@@ -278,6 +266,7 @@
             });
             vm[varName] = dis.y;
             vm[varName + "X"] = dis.x;
+            console.log("最终距离", dis)
 
         }
         //让窗口滚动到指定距离

@@ -212,7 +212,7 @@ export const getDomToVisbleDis = function ({
     } else { }
     return null;
 };
-//获取dom到浏览器窗口可视区的距离，如果是负数说明已经可视内，或者在浏览器顶部了
+//获取dom到浏览器窗口可视区的距离，如果是0说明在可视区内
 export const getDomToViewVisbleDis = function ({
     dom,
     yOtherHeight = 0,
@@ -236,7 +236,7 @@ export const getDomToViewVisbleDis = function ({
         y = 0;
     }
     //在屏幕左边
-    if (rect.left < 0) {
+    if (rect.left < xOtherHeight) {
         x = rect.left + xOtherHeight;
     }
     else if (rect.left > winWidth) {

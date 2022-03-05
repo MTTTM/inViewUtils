@@ -1,54 +1,54 @@
 //窗口相关
-export const getViewPortHeight = function() {
+export const getViewPortHeight = function () {
     return window.innerHeight;
 };
-export const getViewPortWidth = function() {
+export const getViewPortWidth = function () {
     return window.innerWidth;
 };
 
 //dom 相关==========================
 export const getComputedStyle = window.getComputedStyle; //获取dom真实样式
 //getBoundingClientRect 返回的width，height 永远是相对设备方向而言的，如果旋转了90度，width就等于样式高
-export const getBoundingClientRect = function({ dom, rotate = 0 } = {}) {
+export const getBoundingClientRect = function ({ dom, rotate = 0 } = {}) {
     let rect = dom.getBoundingClientRect();
     return rect;
 };
 //获取相对用户设备方向的宽
-export const getRectWidth = function({ dom, rotate = 0 } = {}) {
+export const getRectWidth = function ({ dom, rotate = 0 } = {}) {
     let obj = getBoundingClientRect({ dom, rotate });
     return obj.width;
 };
 //获取相对用户设备方向的高
-export const getRectHeight = function({ dom, rotate = 0 } = {}) {
+export const getRectHeight = function ({ dom, rotate = 0 } = {}) {
     let obj = getBoundingClientRect({ dom, rotate });
     return obj.height;
 };
 //获取计算后的样式宽
-export const getBlockWidth = function(dom) {
+export const getBlockWidth = function (dom) {
     let obj = getComputedStyle(dom);
     return parseInt(obj.width);
 };
 //获取计算后的样式高
-export const getBlockHeight = function(dom) {
+export const getBlockHeight = function (dom) {
     let obj = getComputedStyle(dom);
     return parseInt(obj.height);
 };
 //滚动相关
-export const getBodyScrollY = function() {
+export const getBodyScrollY = function () {
     return document.documentElement.scrollTop || document.body.scrollTop;
 };
-export const getBodyScrollX = function() {
+export const getBodyScrollX = function () {
     return document.documentElement.scrollLeft || document.body.scrollLeft;
 };
-export const getDomScrollX = function(dom) {
+export const getDomScrollX = function (dom) {
     return dom.scrollLeft;
 };
-export const getDomScrollY = function(dom) {
+export const getDomScrollY = function (dom) {
     return dom.scrollTop;
 };
 
 //是否在窗口可视区
-export const isInView = function({ dom, otherHeight = 0 }) {
+export const isInView = function ({ dom, otherHeight = 0 }) {
     let rect = getBoundingClientRect({ dom: dom });
     let viewHeight = getViewPortHeight({});
     return rect.top >= 0 && rect.bottom <= viewHeight - otherHeight;
@@ -64,7 +64,7 @@ export const isInView = function({ dom, otherHeight = 0 }) {
  *  overallVisible 是否完全都在可视区
  * otherHeight 底部覆盖元素高度
  */
-export const isInDomView = function({
+export const isInDomView = function ({
     dom,
     wrapDom,
     rotate,
@@ -125,7 +125,7 @@ export const isInDomView = function({
  * @param {*} dir  检测滚动方向
  * @returns  dom
  */
-export const getScrollableChildren = function(box, maxLoop = 100, dir = "v") {
+export const getScrollableChildren = function (box, maxLoop = 100, dir = "v") {
     let v = 0;
     let direction = dir == "h" ? "h" : "v";
     var result = null;
@@ -162,7 +162,7 @@ export const getScrollableChildren = function(box, maxLoop = 100, dir = "v") {
  * @param {*} otherHeight
  * @returns {x:number,y:number}
  */
-export const getDomToVisbleDis = function({
+export const getDomToVisbleDis = function ({
     dom,
     viewPort,
     yOtherHeight = 0,
@@ -209,6 +209,20 @@ export const getDomToVisbleDis = function({
             x: rect.left - wrapRect.left + xOtherHeight,
         };
         return obj;
-    } else {}
+    } else { }
     return null;
+};
+
+export const getDomToViewVisbleDis = function ({
+    dom,
+    yOtherHeight = 0,
+    xOtherHeight = 0,
+} = {}) {
+    let rect = getBoundingClientRect({ dom });
+    const winHeight = getViewPortHeight();
+    const winWidth = getViewPortWidth();
+    return {
+        y: rect.bottom - winHeight + yOtherHeight,
+        x: rect.right - winWidth + xOtherHeight,
+    };
 };

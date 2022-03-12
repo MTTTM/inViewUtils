@@ -1,6 +1,6 @@
 {
   "name": "in-view-utils",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Detect if the dom is within the view, as well as some other dom-related helper functions.",
   "author": "MTTTM",
   "license": "MIT",

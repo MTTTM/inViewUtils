@@ -2,6 +2,8 @@
 
 检测dom是否在视图内，以及其他一些dom相关的辅助函数
 
+* [在线 demo](https://mtttm.github.io/inViewUtils/)
+
 ## 安装
 
 ```javascript
@@ -50,7 +52,7 @@ isInDomView(...)
 ## 示意图
 
 ### 图1
-![图一](./imgs/img1.png)
+![图一](./imgs/img2.png)
 ### 图2
 ![图一](./imgs/img1.png)
 

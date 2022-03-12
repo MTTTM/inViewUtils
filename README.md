@@ -2,6 +2,7 @@
 
 * Detect if the dom is within the view, as well as some other dom-related helper functions.
 * [中文说明](https://github.com/MTTTM/inViewUtils/blob/main/README_cn.md)
+* [Online demo](https://mtttm.github.io/inViewUtils/)
 
 ## Install
 
@@ -30,7 +31,7 @@ isInDomView(...)
 | --------     | :-----   | :----|:----|
 | isInDomView   | Detects whether the dom is visible inside the container **dom**      |   Refer to the [isInDomView](#isInDomView ) description   | boolean|
 | isInView        | Detects if the dom is fully visible within the **window**    |   The dom object being detected   | boolean|
-| getScrollableChildren |Gets one scrollable child node | Refer to the getScrollableChildren description| dom or null|
+| getScrollableChildren |Gets one scrollable child node | Refer to the [getScrollableChildren](#getScrollableChildren ) description| dom or null|
 | getDomToVisbleDis        | Gets the distance between the dom entering the **dom** container viewable area    | Refer to the [isInDomView](#getDomToVisbleDis ) desc   | {x:number,y:number}|
 | getDomToViewVisbleDis| Gets the distance from the dom to the window viewable| Refer to the [getDomToViewVisbleDis](#getDomToViewVisbleDis ) description| {x:number,y:number}|
 
@@ -53,14 +54,14 @@ isInDomView(...)
 ## Diagram
 
 ### img1
-![img1](./imgs/img1.png)
+![img1](./imgs/img2.png)
 ### img2
 ![img2](./imgs/img1.png)
 
 ## Api description
 ### isInDomView
 #### description
-兼容dom在父容器**dom**里面是否可见
+Detects whether the dom is visible in the parent container **dom**
 #### arg
 
 typeof arg ==  object

@@ -7,10 +7,9 @@ export const getViewPortWidth = function () {
 };
 
 //dom 相关==========================
-export const getComputedStyle = window.getComputedStyle;//获取dom真实样式
+export const getComputedStyle = window.getComputedStyle; //获取dom真实样式
 //getBoundingClientRect 返回的width，height 永远是相对设备方向而言的，如果旋转了90度，width就等于样式高
 export const getBoundingClientRect = function (dom) {
-
     let rect = dom.getBoundingClientRect();
     return rect;
 };
@@ -27,12 +26,13 @@ export const getRectHeight = function (dom) {
 //获取计算后的样式宽
 export const getBlockWidth = function (dom) {
     let obj = getComputedStyle(dom);
-    return parseInt(obj.width);
+    return parseFloat(obj.width);
 };
 //获取计算后的样式高
 export const getBlockHeight = function (dom) {
+    console.log("dom", dom);
     let obj = getComputedStyle(dom);
-    return parseInt(obj.height);
+    return parseFloat(obj.height);
 };
 //滚动相关
 export const getBodyScrollY = function () {
@@ -52,7 +52,6 @@ export const getDomScrollY = function (dom) {
 export const isInView = function ({ dom, otherHeight = 0 }) {
     let rect = getBoundingClientRect(dom);
     let viewHeight = getViewPortHeight({});
-    // console.log("otherHeight", otherHeight)
     return rect.top >= 0 && rect.bottom <= viewHeight - otherHeight;
 };
 
@@ -158,9 +157,9 @@ export const getScrollableChildren = function (box, maxLoop = 100, dir = "v") {
     return check(box, maxLoop);
 };
 /**
- *  获取dom到Y轴完全可见的距离
- * @param {*} dom ,【可滚动】的dom容器
- * @param {*} viewPort 可能是dom，可能是window
+ *  获取dom到XY轴完全可见的距离
+ * @param {*} dom ,被检测的dom
+ * @param {*} viewPort  容器dom可滚动】
  * @param {*} otherHeight
  * @returns {x:number,y:number}
  */
@@ -169,52 +168,52 @@ export const getDomToVisbleDis = function ({
     viewPort,
     yOtherHeight = 0,
     xOtherHeight = 0,
-    rotate = 0
+    rotate = 0,
 } = {}) {
-
-    console.warn("dom", dom)
     let rect = getBoundingClientRect(dom);
     let wrapStyle = getComputedStyle(dom);
-    let wrapHeight = getBlockHeight(dom);
-    let wrapPaddingTop = parseInt(wrapStyle.paddingTop);
-    let wrapPaddingBottom = parseInt(wrapStyle.paddingBottom);
-
-
+    console.log("dom????", dom);
+    // let wrapHeight = getBlockHeight(dom);
+    console.log("????");
+    let wrapPaddingTop = parseFloat(wrapStyle.paddingTop);
+    let wrapPaddingBottom = parseFloat(wrapStyle.paddingBottom);
 
     if (viewPort instanceof Element) {
         let wrapRect = getBoundingClientRect(viewPort);
-        console.log("rotate", rotate)
+        console.log("rotate", rotate);
+        //旋转前和旋转后，计算得到的x y一样才是正常的，因为内部dom没有滚动，变得是外部dom的旋转
         if (rotate == -90) {
-            // console.log("ROTATE", rotate, "Y 子节点:", rect.right, '容器', wrapRect.right, "距离", rect.right - wrapRect.right)
-            // console.log("X 子节点:", rect.bottom, '容器', wrapRect.bottom, "距离", rect.bottom - wrapRect.bottom)
-            // console.log("yOtherHeight", yOtherHeight)
-            return {
-                y: rect.right - wrapRect.right + wrapHeight + yOtherHeight - (wrapPaddingTop + wrapPaddingBottom),
+            let obj = {
+                y: rect.right -
+                    wrapRect.right +
+                    yOtherHeight -
+                    (wrapPaddingTop + wrapPaddingBottom),
                 x: wrapRect.bottom - rect.bottom + xOtherHeight,
             };
+            console.log("-90", obj);
+            return obj;
+        } else if (rotate == 90) {
+            let obj = {
+                y: wrapRect.left -
+                    rect.left +
+                    yOtherHeight -
+                    (wrapPaddingTop + wrapPaddingBottom),
+                x: rect.bottom - wrapRect.bottom + xOtherHeight,
+            };
+            return obj;
         }
-        else if (rotate == -90) {
-
-        }
-        return {
-            y: rect.bottom - wrapRect.bottom + yOtherHeight - (wrapPaddingTop + wrapPaddingBottom),
+        let obj = {
+            y: rect.bottom -
+                wrapRect.bottom +
+                yOtherHeight -
+                (wrapPaddingTop + wrapPaddingBottom),
             x: rect.left - wrapRect.left + xOtherHeight,
         };
+        return obj;
     } else { }
     return null;
 };
-
-/**
- * 获取dom 在窗口可视区的距离
- * 如果返回 x 或y为负数，说明dom已经在可视区内
- * @param {*} param0 
- * @returns 
- * {
- *  x:number
- *  y:number
- * }
- */
-
+//获取dom到浏览器窗口可视区的距离，如果是0说明在可视区内
 export const getDomToViewVisbleDis = function ({
     dom,
     yOtherHeight = 0,
@@ -223,8 +222,29 @@ export const getDomToViewVisbleDis = function ({
     let rect = getBoundingClientRect(dom);
     const winHeight = getViewPortHeight();
     const winWidth = getViewPortWidth();
+    let y = 0;
+    let x = 0;
+    //在屏幕顶部
+    if (rect.bottom < 0) {
+        y = rect.top;
+    } else if (rect.bottom - winHeight + yOtherHeight > 0) {
+        //屏幕下方
+        y = rect.bottom - winHeight + yOtherHeight;
+    } else {
+        //在可视区内，啥也不做
+        y = 0;
+    }
+    //在屏幕左边
+    if (rect.left < xOtherHeight) {
+        x = rect.left + xOtherHeight;
+    } else if (rect.left > winWidth) {
+        //屏幕右边
+        x = rect.right - winWidth + xOtherHeight;
+    } else {
+        x = 0; //视图内
+    }
     return {
-        y: rect.bottom - winHeight + yOtherHeight,
-        x: rect.right - winWidth + xOtherHeight,
+        y,
+        x,
     };
 };

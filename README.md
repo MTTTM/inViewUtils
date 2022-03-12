@@ -1,99 +1,129 @@
-# 检测dom是否在视图内
+# inViewUtils.js
 
-## 提供函数列表
-| 函数名        | 说明    |  参数  | 返回值|
+Detect if the dom is within the view, as well as some other dom-related helper functions
+
+## The main functional functions
+| function name        | description    |  arg  | return|
 | --------     | :-----   | :----|:----|
-| isInDomView   | 检测dom在**容器dom**内是否可见      |   参考isInDomView说明   | boolean|
-| isInView        | 检测dom在**窗口**内是否完全可见    |   检测的dom   | boolean|
-| getScrollableChildren |获取可滚动的子节点一个或者null |参考 getScrollableChildren 说明|dom或null|
-| getDomToVisbleDis        | 获取dom进入容器可视区距离    |   参考getDomToVisbleDis 说明   | {x:number,y:number}|
-| getDomToViewVisbleDis| 获取dom到窗口可视区的距离| 参考 getDomToViewVisbleDis 说明| {x:number,y:number}|
+| isInDomView   | Detects whether the dom is visible inside the container **dom**      |   Refer to the [isInDomView](#getDomToVisbleDis ) description   | boolean|
+| isInView        | Detects if the dom is fully visible within the **window**    |   The dom object being detected   | boolean|
+| getScrollableChildren |Gets one scrollable child node | Refer to the getScrollableChildren description| dom or null|
+| getDomToVisbleDis        | Gets the distance between the dom entering the **dom** container viewable area    |   参考getDomToVisbleDis 说明   | {x:number,y:number}|
+| getDomToViewVisbleDis| Gets the distance from the dom to the window viewable| Refer to the getDomToViewVisbleDis description| {x:number,y:number}|
 
-## 其他辅助函数
-| 函数名        | 说明    |  参数  |返回值|
+## Other function
+| function name        | description    |  arg  |return|
 | --------     | :-----   | :---- |:----|
-| getBoundingClientRect   |   获取dom的rect对象    | 对象 dom   | rect 对象|
-| getRectHeight        |   获取dom的rect对象的高度，如果标签旋转90度或-90度，得到的是基于设备方向的上的高度，不再是样式属性  |  对象dom    | number|
-| getRectWidth        |   获取dom的rect对象的宽度，如果标签旋转90度或-90度，得到的是基于设备方向的上的高度，不再是样式属性  |  对象 dom   |number|
-| getViewPortHeight        | 获取**窗口**高度    |   -   |number|
-| getViewPortWidth        |   获取**窗口**宽度   |    -  |number|
-| getBlockWidth        | 获取视图计算后的高度css属性，是传统意义上的样式属性    |   -   |number|
-| getBlockHeight        |   获取视图计算后宽度css属性，是传统意义上的样式属性   |    -  |number|
-| getBodyScrollY        |   获取body Y轴滚动  |   -   |number|
-| getBodyScrollY        |   获取body Y轴滚动  |   -   |number|
-| getDomScrollX        |   获取 dom X轴滚动  |    dom  |number|
-| getDomScrollY        |  获取dom Y轴滚动   |   dom   |number|
+| getBoundingClientRect   |   Gets the dom's rect object   |dom   |  [rect object](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect)|
+| getRectHeight        |   Gets the **height** of the dom rect object, if the label is rotated 90 degrees or -90 degrees, the result is based on the height of the device orientation, no longer a style attribute |  dom    | number|
+| getRectWidth        |   Gets the **width** of the dom rect object, if the label is rotated 90 degrees or -90 degrees, the result is based on the height of the device orientation, no longer a style attribute | dom   |number|
+| getViewPortHeight        | Gets the **window height**    |   -   |number|
+| getViewPortWidth        |   Gets the **Window width**   |    -  |number|
+| getBlockWidth        | Gets the height of the view after the computed css property, which is a style property in the **traditional sense**    |   -   |number|
+| getBlockHeight        |   Gets the view after the width is calculated after the css property, which is a style property in the **traditional sense**   |    -  |number|
+| getBodyScrollY        |   Gets the **body** Y-axis scroll  |   -   |number|
+| getBodyScrollX        |   Gets the **body** X axis scroll  |   -   |number|
+| getDomScrollX        |   Gets the **dom** X-axis scroll |    dom  |number|
+| getDomScrollY        |  Gets the **dom** Y axis to scroll   |   dom   |number|
 
 
-## 示意图
+## Diagram
 
-### 图1
-![图一](./imgs/img1.png)
-### 图2
-![图一](./imgs/img1.png)
+### img1
+![img1](./imgs/img1.png)
+### img2
+![img2](./imgs/img1.png)
 
-## api 说明
+## Api description
 ### isInDomView
-#### 说明
-兼容dom在父容器里面是否可见
-#### 参数
-对象类型
-**dom**: 检测的目标dom
-**wrapDom**: 检测dom的父容器
-**overallVisible**: 是否部分在父容器可见，默认否，如果设置了true，那一部分可见isInDomView函数也会返回true，如【图2】,否则只有如图一时候才会true
+#### description
+兼容dom在父容器**dom**里面是否可见
+#### arg
+
+typeof arg ==  object
+
+* **dom**: The target dom of the detected
+* **wrapDom**: Detect the parent container (**dom**) of the dom
+* **overallVisible**: Whether the part is visible in the parent container, the default is no, if true is set, the part of the visible isInDomView function will also return true, such as [img 2], otherwise it will only be true if it is shown in figure 1
 
 ### getScrollableChildren
-#### 说明
-获取dom里面可滚动的元素，再返回来，如果没有就是null
+#### description
 
-#### 参数
-* 参数一：要检测的dom
-* 参数二:最大层次遍历次数,默认100
-* 参数三:滚动的方向，可选v(垂直，默认)和h(水平滚动)
+Get the scrollable elements in the dom, and then return, if not, null
 
-#### 返回
-一个dom或者null
+#### arg
+
+len of arg ===3
+
+* arg1：The dom to be detected
+* arg2:Maximum number of hierarchical traversals, default 100
+* arg3:Direction of scrolling, optional v (vertical, default) and h (horizontal scrolling)
+
+#### return
+
+A dom or null
 
 ### getDomToVisbleDis 
-#### 说明
-获取dom到容器可视区的距离，容器可以是可滚动的dom标签，也可以是window
+#### desc
 
-####  参数 {}
+Get the distance from the dom to the visual area of the container dom,
 
-* dom :被检测的元素
-* viewPort:  dom(可滚动容器)或者window
-* yOtherHeight:   Y轴底部遮罩的高度
-* xOtherHeight：X轴底部的遮罩高度
-* rotate:容器旋转角度，可选0，90，-90
+####  arg
 
-#### 返回
+typeof arg ==  object
+
+* dom :The element being detected
+* viewPort:  dom (scrollable parent container)
+* yOtherHeight:   The height of the bottom mask of the Y axis
+* xOtherHeight：The mask height at the bottom of the X axis
+* rotate: Container rotation angle, optional 0, 90, -90
+
+#### return
+```javascript
+
 {
-  x:"到X轴可见区的距离",
-  y:"到Y轴可见区的距离"
+  x:number,
+  y:number
 }
+```
 
 
 
 ### getDomToViewVisbleDis
 
-#### 说明
-获取dom到浏览器窗口可视区的距离，返回 {x:number,y:number}.如果是**负数**，说明在可视区内
+#### desc
 
-#### 参数 {}
-* dom: 被检测的dom
-* yOtherHeight: y轴方向，底部遮罩div高度
-* xOtherHeight:  x轴方向，左侧遮罩div高度
+Gets the distance from the dom to the **window area** of the browser window, returns {x:number,y:number}
+If it is like {x:0,y:0}, it is within the visual area
 
+#### arg 
+
+typeof arg ==  object
+
+* dom: The element being detected
+* yOtherHeight: The height of the bottom mask of the Y axis
+* xOtherHeight:  The mask height at the bottom of the X axis
+
+#### return 
+
+```javascript
+{
+  x:number,
+  y:number
+}
+```
 
 ## Q&A
 
-#### getRectHeight 和 getBlockHeight 的区别
- 只有容器设置了旋转90度或者90度时候才会有区别。
+#### The difference between getRectHeight and getBlockHeight
+
+ The difference is only if the container is set to rotate 90 degrees or 90 degrees.
+
  
- getRectHeight 是通过getBoundingClientRect得到高度
+ 
+  > 1. GetRectHeight is the height obtained by gettingBoundingClientRect 
+  >  2. GetBlockHeight is the height obtained through getComputedStyle.
+ 
 
- getBlockHeight是通过getComputedStyle得到的高度。
-
-
-  1. getBoundingClientRect 永远是基于设备方向的，得到是设备方向意义上面的左右上下 和宽高
-  2. getComputedStyle 只是对生效的css样式做读取
+   > 1. GetBoundingClientRect is always **based on the orientation of the device**, and the result is the orientation of the device above the meaning of the left and right up and down and width and height
+  >  2. GetComputedStyle simply reads the css styles that are in effect

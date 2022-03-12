@@ -1,15 +1,38 @@
 # inViewUtils.js
 
-Detect if the dom is within the view, as well as some other dom-related helper functions
+* Detect if the dom is within the view, as well as some other dom-related helper functions.
+* [中文说明](https://github.com/MTTTM/inViewUtils/blob/main/README_cn.md)
+
+## Install
+
+```javascript
+npm i in-view-utils
+```
+
+## Use
+### ES6
+```javascript
+import {isInDomView} from "in-view-utils"
+//like
+isInDomView(...)
+```
+### script html label
+
+```javascript
+ //like
+  window.inViewUtils.isInDomView({...})
+```
+
+
 
 ## The main functional functions
 | function name        | description    |  arg  | return|
 | --------     | :-----   | :----|:----|
-| isInDomView   | Detects whether the dom is visible inside the container **dom**      |   Refer to the [isInDomView](#getDomToVisbleDis ) description   | boolean|
+| isInDomView   | Detects whether the dom is visible inside the container **dom**      |   Refer to the [isInDomView](#isInDomView ) description   | boolean|
 | isInView        | Detects if the dom is fully visible within the **window**    |   The dom object being detected   | boolean|
 | getScrollableChildren |Gets one scrollable child node | Refer to the getScrollableChildren description| dom or null|
-| getDomToVisbleDis        | Gets the distance between the dom entering the **dom** container viewable area    | Refer to the getDomToVisbleDis desc   | {x:number,y:number}|
-| getDomToViewVisbleDis| Gets the distance from the dom to the window viewable| Refer to the getDomToViewVisbleDis description| {x:number,y:number}|
+| getDomToVisbleDis        | Gets the distance between the dom entering the **dom** container viewable area    | Refer to the [isInDomView](#getDomToVisbleDis ) desc   | {x:number,y:number}|
+| getDomToViewVisbleDis| Gets the distance from the dom to the window viewable| Refer to the [getDomToViewVisbleDis](#getDomToViewVisbleDis ) description| {x:number,y:number}|
 
 ## Other function
 | function name        | description    |  arg  |return|

@@ -2,6 +2,26 @@
 
 检测dom是否在视图内，以及其他一些dom相关的辅助函数
 
+## 安装
+
+```javascript
+npm i in-view-utils
+```
+
+## 使用
+### ES6
+```javascript
+import {isInDomView} from "in-view-utils"
+//like
+isInDomView(...)
+```
+### script标签全局引入
+
+```javascript
+ //like
+  window.inViewUtils.isInDomView({...})
+```
+
 ## 提供函数列表
 | 函数名        | 说明    |  参数  | 返回值|
 | --------     | :-----   | :----|:----|
@@ -58,7 +78,7 @@
 
 ### getDomToVisbleDis 
 #### 说明
-获取dom到容器可视区的距离，容器可以是可滚动的dom标签，也可以是window
+获取dom到容器可视区的距离，容器可以是可滚动的dom标签
 
 ####  参数 {}
 
@@ -79,7 +99,7 @@
 ### getDomToViewVisbleDis
 
 #### 说明
-获取dom到浏览器窗口可视区的距离，返回 {x:number,y:number}.如果是**负数**，说明在可视区内
+获取dom到浏览器窗口可视区的距离，返回 {x:number,y:number}.如果是**0**，说明在可视区内
 
 #### 参数 {}
 * dom: 被检测的dom
@@ -92,10 +112,9 @@
 #### getRectHeight 和 getBlockHeight 的区别
  只有容器设置了旋转90度或者90度时候才会有区别。
  
- getRectHeight 是通过getBoundingClientRect得到高度
+ > 1. getRectHeight 是通过getBoundingClientRect得到高度
+ > 2. getBlockHeight是通过getComputedStyle得到的高度。
 
- getBlockHeight是通过getComputedStyle得到的高度。
 
-
-  1. getBoundingClientRect 永远是基于设备方向的，得到是设备方向意义上面的左右上下 和宽高
-  2. getComputedStyle 只是对生效的css样式做读取
+  > 1. getBoundingClientRect 永远是基于设备方向的，得到是设备方向意义上面的左右上下 和宽高
+  > 2. getComputedStyle 只是对生效的css样式做读取

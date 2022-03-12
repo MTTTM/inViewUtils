@@ -64,18 +64,21 @@
                 不计算#cover在内，也就是被#cover遮住 <span class="warning">没事</span>
                 <div class="btnGroup ">
                     <button
-                        onclick="getDomToVisibleDis('#wrap',window,'wrapToVisibleDis',null,'wrapView1Rotate')">获取#wrap到可视区的距离</button>
-                    <span v-data="wrapToVisibleDis">--</span>
-                    <button onclick="windowScroll('wrapToVisibleDis')">让#wrap进入窗口可视区</button>
+                        onclick="getDomInViewDis('#wrap',null,'wrapToVisibleDis','wrapToVisibleDisX')">获取#wrap到可视区的距离</button>
+                    y:<span v-data="wrapToVisibleDis">--</span>
+                    x:<span v-data="wrapToVisibleDisX">--</span>
+                    <button onclick="windowScroll('wrapToVisibleDis','wrapToVisibleDisX')">让#wrap进入窗口可视区</button>
                 </div>
             </div>
             <div>
                 计算#cover在内，也就是被#cover遮住 <span class="warning">不行</span>
                 <div class="btnGroup ">
                     <button
-                        onclick="getDomToVisibleDis('#wrap',window,'wrapToVisibleDisCover','#cover','wrapView1Rotate')">获取#wrap到可视区的距离</button>
-                    <span v-data="wrapToVisibleDisCover">--</span>
-                    <button onclick="windowScroll('wrapToVisibleDisCover')">让#wrap进入窗口可视区</button>
+                        onclick="getDomInViewDis('#wrap','#cover','wrapToVisibleDisCover','wrapToVisibleDisCoverX')">获取#wrap到可视区的距离</button>
+                    Y:<span v-data="wrapToVisibleDisCover">--</span>
+                    X:<span v-data="wrapToVisibleDisCoverX">--</span>
+                    <button
+                        onclick="windowScroll('wrapToVisibleDisCover','wrapToVisibleDisCoverX')">让#wrap进入窗口可视区</button>
                 </div>
             </div>
         </div>
@@ -154,30 +157,37 @@
 
 
     <h1>demo1</h1>
-    <div class="wrap" id="wrap">
-        <div class="inner ">
-            这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问， 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
-            <span class="label label-blue" id="label">#label</span>有几？
-            据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
+    <div style="display: flex;width:200%">
+        <div class="wrapLeft"></div>
+        <div class="wrap" id="wrap">
+            <div class="inner ">
+                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问， 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
+                <span class="label label-blue" id="label">#label</span>有几？
+                据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
+            </div>
         </div>
     </div>
     <div style="height:200px"></div>
     <h1>demo2 dom 元素 底部有覆盖</h1>
-    <div class="wrap wrap2" id="wrap2" style="overflow: hidden;padding:0;">
-        <div class="boxInner" id="boxInner" style="height:100%;overflow: auto;    overflow: overlay;z-index:1;">
-            <div class="inner inner">
-                实在奇。奇
-                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
-                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？ 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
-                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？ 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
-                这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
-                <span class="label label-blue" id="label2">#label2</span>有几？
-                据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
+    <div style="display: flex;width:200%">
+        <div class="wrapLeft"></div>
+        <div class="wrap wrap2" id="wrap2" style="overflow: hidden;padding:0;">
+            <div class="boxInner" id="boxInner" style="height:100%;overflow: auto;    overflow: overlay;z-index:1;">
+                <div class="inner inner">
+                    实在奇。奇
+                    这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
+                    这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？ 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
+                    这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？ 这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，
+                    这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，诸如：成书何时？如何成书？作者是谁？
+                    <span class="label label-blue" id="label2">#label2</span>有几？
+                    据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。据现存最早的《金瓶梅》序言说，作者叫“兰陵笑笑生”。这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，这部书，实在奇。奇就奇在一照面便给人们留下了一大堆疑问，可是这位兰陵笑笑生究竟是谁？姓谁名谁，无从考证，明代人就众说纷纭。即使到了如今，众多学者和专家也无法考证这位兰陵笑笑生是谁。推断很多，但是都缺实证，因此，这位兰陵笑笑生也还在云里雾里。
+                </div>
             </div>
+            <div class="cover2" id="cover2"></div>
         </div>
-        <div class="cover2" id="cover2"></div>
     </div>
     <div class="fixed" id="cover"></div>
+    <div style="width:200%;height:2px;background-color: red;"></div>
     <script src="../js/inViewUtils.js">
     </script>
     <script src="../libs/mvvm.js"></script>
@@ -189,6 +199,8 @@
             wrapView1Rotate: 0,
             wrapToVisibleDis: "--", //#wrap到可视区的距离
             wrapToVisibleDisCover: "-", //#wrap到可视区的距离,计算遮罩无
+            wrapToVisibleDisX: "--", //#wrap到可视区的距离
+            wrapToVisibleDisCoverX: "-", //#wrap到可视区的距离,计算遮罩无
 
             wrapInView2: false, //#wrap是否在可视区
             wrapView2Rotate: 0,
@@ -283,8 +295,14 @@
 
         }
         //让窗口滚动到指定距离
-        function windowScroll(varName) {
-            window.scrollBy(0, vm[varName])
+        function windowScroll(varName, varNameX) {
+            //if (vm[varName] && vm[varName] > 0) {
+            window.scrollBy(vm[varNameX], vm[varName])
+            // }
+            // else {
+            //     alert("已经在窗口可视区内")
+            // }
+
 
 
         }
@@ -294,6 +312,19 @@
             console.log("wrap", wrap, "xx", vm[varName])
             let x = vm[varName + "X"] ? vm[varName + "X"] : 0;
             wrap.scrollBy(x, vm[varName]);
+        }
+        function getDomInViewDis(dom, coverDomId, varName, varNameX) {
+            let coverHeight = 0;
+            if (coverDomId) {
+                coverHeight = inViewUtils.getBlockHeight(document.querySelector(coverDomId));
+            }
+            let dis = inViewUtils.getDomToViewVisbleDis({
+                dom: document.querySelector(dom),
+                yOtherHeight: coverHeight,
+            });
+            vm[varName] = dis.y;
+            vm[varNameX] = dis.x;
+            return dis;
         }
     </script>
 </body>

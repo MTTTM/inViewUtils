@@ -32,6 +32,16 @@ body {
     display: block;
     height: 300px;
   }
+  width:100%;
+  overflow: auto;
+}
+.wrapLeft{
+  width:900px;
+  height: 10px;
+  background-color: orange;
+  &::after{
+    content:"让内容寄出可视区X轴"
+  }
 }
 .wrap {
   margin: 10px;

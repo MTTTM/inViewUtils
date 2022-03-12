@@ -2,6 +2,7 @@ const fileinclude = require("gulp-file-include");
 const less = require("gulp-less");
 const autoprefixer = require("gulp-autoprefixer");
 const rev = require("gulp-rev");
+let uglify = require('gulp-uglify-es').default;
 const revCollector = require("gulp-rev-collector");
 const babel = require("gulp-babel");
 const browserSync = require("browser-sync").create();
@@ -124,8 +125,14 @@ let jsBulidFn = function (cb) {
         .src(`${targetPath}js/*.js`)
         // .pipe(rev())
         .pipe(gulp.dest(`${bulidPath}js`))
-        .pipe(rev.manifest())
-        .pipe(gulp.dest("rev/js"));
+        .pipe(uglify({
+            compress: {
+                warnings: false,
+                drop_console: true,  // 过滤 console
+                drop_debugger: true  // 过滤 debugger
+            }
+        }))
+        .pipe(gulp.dest("dist/js"));
     cb();
 };
 let cssBulidFn = function (cb) {
@@ -150,7 +157,7 @@ exports.build = gulp.series(
     jsBulidFn,
     // cssBulidFn,
     // imgBulidMove,
-    // libsBulidMove,
+    //libsBulidMove,
     // htmlBulidrevFn
 );
 //dev环境任务

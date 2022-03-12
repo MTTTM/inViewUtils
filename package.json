@@ -15,10 +15,18 @@
     "inview",
     "inviewutils"
   ],
+  "repository" :{
+    "type" : "git",
+    "url" : "https://github.com/MTTTM/inViewUtils"
+},
+"bugs": {
+  "url": "https://github.com/MTTTM/inViewUtils/issues"
+},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "gulp",
-    "build": "gulp build"
+    "build": "gulp build",
+    "buildPage": "gulp buildPage"
   },
   "dependencies": {
     "gulp-autoprefixer": "^7.0.1",

@@ -8,7 +8,7 @@ const babel = require("gulp-babel");
 const browserSync = require("browser-sync").create();
 const reload = browserSync.reload;
 const gulp = require("gulp");
-const targetPath = "./tmp/";
+const targetPath = "./docs/";
 const bulidPath = "./dist/";
 const devPath = "./src/";
 //合并html模块
@@ -21,7 +21,7 @@ let include = function (cb) {
                 basepath: "@file",
             })
         )
-        .pipe(gulp.dest(`${targetPath}html`))
+        .pipe(gulp.dest(`${targetPath}`))
         .pipe(reload({ stream: true }));
     cb();
 };
@@ -165,3 +165,5 @@ exports.default = gulp.series(
     gulp.parallel(moveImage, watchFn, include, lessFn, jsFn, libsMove),
     serverFn
 );
+
+
